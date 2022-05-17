@@ -3,7 +3,7 @@
     <h1 id="title">{{ title }}</h1>
 
     <ul>
-      <h1 class="list-group-item" v-schow="currentDate">
+        <h1 class="list-group-item" v-schow="currentDate">
         <strong></strong>{{ currentDate }}
       </h1>
       <li class="entry-list" v-for="entry in entries.slice(1)" :key="entry">
@@ -15,11 +15,11 @@
     </ul>
 
     <div id="footer">
-      <img :src="imgLink1" />
+        <img :src="imgLink1" />
 
-      <img v-bind:src="imgLink2" />
+        <img v-bind:src="imgLink2" />
 
-      <img :src="imgLink3" />
+        <img :src="imgLink3" />
     </div>
   </div>
 
@@ -76,42 +76,42 @@ export default {
   name: "App",
   data() {
     return {
-      title: "Welcome to Opportunity",
-      currentDate: "",
-      sheet_id: "1a81aI0Y8ViZO0tI92h2YSMqVQJ8hmNNMyMylXgvwiU4",
-      api_token: "AIzaSyA-qeDXOhEeQDA0vQf7LgkF7DQtGnAtmAU",
-      entries: [],
-      imgLink1: require("../src/assets/stadt_zürich.png"),
-      // logoWidth1: 100,
-      imgLink2: require("../src/assets/opportunity.png"),
-      // logoWidth2: 100,
-      imgLink3: require("../src/assets/sag.png"),
-      // logoWidth3: 100, */
-    };
-  },
+        title: "Welcome to Opportunity",
+        currentDate: "",
+        sheet_id: "1a81aI0Y8ViZO0tI92h2YSMqVQJ8hmNNMyMylXgvwiU4",
+        api_token: "AIzaSyA-qeDXOhEeQDA0vQf7LgkF7DQtGnAtmAU",
+        entries: [],
+        imgLink1: require("../src/assets/stadt_zürich.png"),
+        // logoWidth1: 100,
+        imgLink2: require("../src/assets/opportunity.png"),
+        // logoWidth2: 100,
+        imgLink3: require("../src/assets/sag.png"),
+        // logoWidth3: 100, */
+      };
+    },
   computed: {
-    gsheet_url() {
-      return `https://sheets.googleapis.com/v4/spreadsheets/${this.sheet_id}/values:batchGet?ranges=A1%3AE100&valueRenderOption=FORMATTED_VALUE&key=${this.api_token}`;
+      gsheet_url() {
+        return `https://sheets.googleapis.com/v4/spreadsheets/${this.sheet_id}/values:batchGet?ranges=A1%3AE100&valueRenderOption=FORMATTED_VALUE&key=${this.api_token}`;
+      },
     },
-  },
   methods: {
-    getData() {
-      axios.get(this.gsheet_url).then((response) => {
+      getData() {
+        axios.get(this.gsheet_url).then((response) => {
         this.entries = response.data.valueRanges[0].values;
-      });
-    },
+        });
+      },
     /*updateCurrentDate() {},
   },*/
-    printcurrentDate: function () {
-      return new Date().toLocaleDateString();
+      printcurrentDate: function () {
+        return new Date().toLocaleDateString();
+      },
     },
-  },
 
-  mounted() {
-    this.getData();
-    this.currentDate = this.printcurrentDate();
-  },
-};
+     mounted() {
+        this.getData();
+        this.currentDate = this.printcurrentDate();
+    },
+  };
 </script>
 
 <style>
@@ -133,9 +133,9 @@ body {
   font-weight: bold;
 }
 
-.list {
+/*.list {
   list-style-type: none;
-}
+}*/
 
 .list-group-item {
   color: rgb(135, 124, 127);
@@ -149,6 +149,7 @@ h1 {
 }
 
 .entry-list {
+  list-style-type: none;
   font-family: "inter", Arial, Helvetica, sans-serif;
   color: rgb(244, 136, 183);
   font: medium;
